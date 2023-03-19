@@ -54,6 +54,9 @@ const deleteAccount = async (req, res) => {
 const dashboard = async (req, res) => {
   const { userId, name } = req.user;
   const user = await User.findOne({ _id: userId });
+  if (!user) {
+    throw new UnauthenticatedError(`no user with ID ${userId} exists.`);
+  }
 
   let validEmail = await emailValidator.validate(user.email);
 

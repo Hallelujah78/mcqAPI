@@ -1,9 +1,8 @@
 require("dotenv").config();
 require("express-async-errors");
 const authRouter = require("./routes/auth");
-
 const connectDB = require("./db/connect");
-
+const YAML = require("yamljs");
 // security;
 const jwt = require("bcryptjs");
 const helmet = require("helmet");
@@ -13,9 +12,14 @@ const xss = require("xss-clean");
 // express
 const express = require("express");
 const app = express();
+
+// swagger
+const swaggerUI = require("swagger-ui-express");
+const swaggerDoc = YAML.load("./swagger.yaml");
+// end swagger
+
 app.set("trust proxy", 1);
 app.use(express.json());
-
 app.use(cors());
 app.use(helmet());
 app.use(xss());
@@ -28,6 +32,7 @@ require("express-async-errors");
 app.get("/", (req, res) => {
   res.send(`<h1>Simple Auth API</h1>\n<a href='/docs'>API Documentation</a>`);
 });
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
 app.use("/api/v1/auth", authRouter);
 

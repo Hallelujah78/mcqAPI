@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: Simple Auth API
+  contact: {}
+  version: "1.0"
+servers:
+  - url: https://simple-auth-api.onrender.com/api/v1/auth
+    variables: {}
+paths:
+  /register:
+    post:
+      tags:
+        - Auth
+      summary: registerUser
+      operationId: registerUser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/registerUserRequest"
+                - example:
+                    name: Test User
+                    password: secretpassword
+                    email: testUser@email.com
+            example:
+              name: Test User
+              password: secretpassword
+              email: testUser@email.com
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security: []
+  /login:
+    post:
+      tags:
+        - Auth
+      summary: loginUser
+      operationId: loginUser
+      parameters: []
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/loginUserRequest"
+                - example:
+                    password: secretpassword
+                    email: testUser@email.com
+            example:
+              password: secretpassword
+              email: testUser@email.com
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security: []
+  /dashboard:
+    get:
+      tags:
+        - User
+      summary: getDashboard
+      operationId: getDashboard
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /delete-account:
+    delete:
+      tags:
+        - User
+      summary: deleteAccount
+      operationId: deleteAccount
+      parameters: []
+      responses:
+        "200":
+          description: ""
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+components:
+  schemas:
+    registerUserRequest:
+      title: registerUserRequest
+      required:
+        - name
+        - password
+        - email
+      type: object
+      properties:
+        name:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+      example:
+        name: Test User
+        password: secretpassword
+        email: testUser@email.com
+    loginUserRequest:
+      title: loginUserRequest
+      required:
+        - password
+        - email
+      type: object
+      properties:
+        password:
+          type: string
+        email:
+          type: string
+      example:
+        password: secretpassword
+        email: testUser@email.com
+    deleteAccountRequest:
+      title: deleteAccountRequest
+      required:
+        - name
+        - email
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+      example:
+        name: Test User
+        email: testUser@email.com
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+  - name: Auth
+    description: ""
+  - name: User
+    description: ""

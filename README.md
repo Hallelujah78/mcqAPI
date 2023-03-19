@@ -5,23 +5,25 @@ This is a simple auth api in ExpressJS that uses jsonwebtoken. It stores usernam
 I wanted to keep this simple, and so I grouped the deleteAccount and dashboard controllers and routes in the auth.js file. The deleteAccount controller should be in its own controller along with, say, updateEmail and updateName, etc. Similarly, the delete-account route should be in a separate route file. The dashboard controller and route are only included for testing and to provide a restricted route that demonstrates that authentication is functioning correctly.
 
 # Packages Used:
-* express
-* dotenv
-* express-async-errors
-* bcryptjs
-* helmet
-* cors
-* xss-clean
-* express-rate-limit
-* jsonwebtoken
-* http-status-codes
-* mongoose
-* nodemon
-* swagger
-* yamljs
+
+- deep-email-validator
+- express
+- dotenv
+- express-async-errors
+- bcryptjs
+- helmet
+- cors
+- xss-clean
+- express-rate-limit
+- jsonwebtoken
+- http-status-codes
+- mongoose
+- nodemon
+- swagger-ui-express
+- yamljs
 
 # .env
-* MONGO_URI - connection string for your database
-* JWT_SECRET - a 256 bit encryption key
-* JWT_TIME - expiry time for tokens
 
+- MONGO_URI - connection string for your database
+- JWT_SECRET - a 256 bit encryption key
+- JWT_TIME - expiry time for tokens
