@@ -27,3 +27,7 @@ I wanted to keep this simple, and so I grouped the deleteAccount and dashboard c
 - MONGO_URI - connection string for your database
 - JWT_SECRET - a 256 bit encryption key
 - JWT_TIME - expiry time for tokens
+
+# Swagger
+
+You will need to change the server's URL in the swagger.yaml file to point to your own API
