@@ -7,6 +7,7 @@ const {
 } = require("../errors");
 
 // *** REMOVE ***
+
 const emailValidator = require("deep-email-validator");
 // *** REMOVE ***
 const login = async (req, res) => {
